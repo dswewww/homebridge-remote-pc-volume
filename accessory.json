@@ -1,0 +1,41 @@
+{
+    "accessory": "HttpAdvancedAccessory",
+    "service": "Speaker",
+    "name": "PC Speaker",
+    "manufacturer": "Custom",
+    "model": "Virtual Device",
+    "debug": false,
+    "optionCharacteristic": [],
+    "urls": {
+        "setMute": {
+            "httpMethod": "Get",
+            "url": "http://192.168.1.152/mute",
+            "mappers": [
+                {
+                    "type": "static",
+                    "parameters": {
+                        "mapping": {
+                            "True": "Muted",
+                            "False": "Unmuted"
+                        }
+                    }
+                }
+            ]
+        },
+        "getMute": {
+            "httpMethod": "Get",
+            "url": "http://192.168.1.152/mute_state",
+            "mappers": [
+                {
+                    "type": "static",
+                    "parameters": {
+                        "mapping": {
+                            "True": "Muted",
+                            "False": "Unmuted"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
