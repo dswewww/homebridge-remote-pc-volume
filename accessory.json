@@ -1,38 +1,44 @@
 {
     "accessory": "HttpAdvancedAccessory",
-    "service": "Speaker",
+    "service": "Lightbulb",
     "name": "PC Speaker",
     "manufacturer": "Custom",
     "model": "Virtual Device",
-    "debug": false,
-    "optionCharacteristic": [],
+    "debug": true,
+    "optionCharacteristic": [
+        "Brightness"
+    ],
     "urls": {
-        "setMute": {
+        "setOn": {
+            "httpMethod": "Post",
+            "url": "http://192.168.1.152:5000/mute",
+            "body": "{value}"
+        },
+        "getOn": {
             "httpMethod": "Get",
-            "url": "http://192.168.1.152/mute",
+            "url": "http://192.168.1.152:5000/status",
             "mappers": [
                 {
-                    "type": "static",
+                    "type": "jpath",
                     "parameters": {
-                        "mapping": {
-                            "True": "Muted",
-                            "False": "Unmuted"
-                        }
+                        "jpath": "$.Muted[0]"
                     }
                 }
             ]
         },
-        "getMute": {
+        "setBrightness": {
+            "httpMethod": "Post",
+            "url": "http://192.168.1.152:5000/volume",
+            "body": "{value}"
+        },
+        "getBrightness": {
             "httpMethod": "Get",
-            "url": "http://192.168.1.152/mute_state",
+            "url": "http://192.168.1.152:5000/status",
             "mappers": [
                 {
-                    "type": "static",
+                    "type": "jpath",
                     "parameters": {
-                        "mapping": {
-                            "True": "Muted",
-                            "False": "Unmuted"
-                        }
+                        "jpath": "$.VolumeLevel[0]"
                     }
                 }
             ]
